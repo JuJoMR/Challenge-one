@@ -1,0 +1,178 @@
+html{
+    background-color: #f3f5fc;
+}
+header{
+    margin: 40px 0 0 40px;
+}
+body{
+    font-family: 'Inter', sans-serif;
+}
+.contenedor {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.titulo{
+    display: inline-block;
+    margin: 40px 0 0 40px;
+}
+.entrada{
+    display: inline-block;
+    margin: 171px 0 0 0;
+}
+.input{
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 150%;
+    color: #0A3871;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 40px 0 80px;
+    display: block;
+    border: none;
+    background: none;
+}
+.input:active{
+    border: none;
+}
+.input::placeholder{
+    color: #0A3871;
+    font-weight: bold;
+    text-shadow: none;
+}
+.verificacion{
+    margin: 0 0 16px 80px;
+}
+.botones{
+    margin: 0 40px 0 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.btn1{
+    width: 45%;
+    height: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: medium;
+    color: white;
+    background-color: #0A3871;
+    border-radius: 15px;
+    border: none;
+    transition: 0.5s all;
+}
+.btn2{
+    width: 45%;
+    height: 50px;
+    font-family: 'Inter', sans-serif;
+    font-size: medium;
+    color: #0A3871;
+    background-color: #d8dfe8;
+    border: 1px solid #0A3871;
+    border-radius: 15px;
+    transition: 0.5s all;
+}
+.btn1:hover{
+    border-color: black;
+}
+.btn1:active{
+    border-color: black;
+    transform: scale(0.8);
+}
+.btn2:hover{
+    border-color: black;
+}
+.btn2:active{
+    border-color: black;
+    transform: scale(0.8);
+}
+.salida{
+    background-color: #FFFFFF;
+    display: inline-block;
+    margin: 40px;
+    box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+    border-radius: 32px;
+}
+.salida .textarea-container {
+    position: relative;
+    width: 300px;
+}
+.salida .textarea-container .placeholder-image {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    transform: translate(4%, -50%);
+    pointer-events: none;
+    width: 80%;
+    height: 45%;
+    background-image: url('imagenes/Muñeco.png');
+    background-size: cover;
+    background-position: center;
+}
+.salida .textarea-container .placeholder-text {
+    font-family: 'Inter', sans-serif;
+    position: absolute;
+    top: 65%;
+    left: 10px;
+    text-align: center;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: #343A40;
+}
+.salida .textarea-container .placeholder-text .line-1 {
+    display: block;
+} 
+.salida .textarea-container .placeholder-text .line-2 {
+    display: block;
+    font-size: 10px;
+    color: #495057;
+}
+.output{
+    width: 80%;
+    margin: 32px auto 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #495057;
+    display: block;
+    border: none;
+}
+.copy{
+    width: 80%;
+    height: 50px;
+    margin: 25px 10%;
+    font-family: 'Inter', sans-serif;
+    font-size: medium;
+    color: #0A3871;
+    background-color: white;
+    border: 1px solid #0A3871;
+    border-radius: 15px;
+    transition: 0.5s all;
+    visibility: hidden;
+}
+.copy:hover{
+    border-color: black;
+}
+.copy:active{
+    border-color: black;
+    transform: scale(0.8);
+}
+#errorIcono{
+    color: #495057;
+    font-size: 15px;
+    transition: 0.5s all;
+}
+.reverse{
+    color: inherit !important;
+}
+.errorTexto{
+    color: #495057;
+    transition: 0.5s all;
+}
+.advertencia{
+    color: #ec0000;
+    transition: 0.5s all
+}

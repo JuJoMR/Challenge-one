@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Encriptador Alura</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    </head>
+    <body>
+        <div class="contenedor">
+            <div class="titulo">
+                <h1><img src="imagenes/Logo.png" alt="Logo de alura"></h1>
+            </div>
+            <div class="entrada">
+                <textarea cols="60" rows="14" class="input" placeholder="Ingrese su texto..."></textarea>
+                <p class="verificacion"> 
+                    <i id="errorIcono"class="material-icons">error</i>
+                    <span id="errorTexto"> Solo letras minúsculas y sin acentos</span>
+                </p>
+                <div class="botones">
+                    <input type="button" onclick="btnEncriptar()"value="Encriptar" class="btn1">
+                    <input type="button" onclick="btnDesencriptar()" value="Desencriptar" class="btn2">     
+                </div> 
+            </div>
+            <div class="salida">
+                <div class="textarea-container">
+                    <textarea cols="40" readonly rows="25" class="output" placeholder=""></textarea>
+                    <div class="placeholder-image"></div>
+                    <div class="placeholder-text">
+                        <span class="line-1">Ningún mensaje fue encontrado</span>
+                        <span class="line-2"><br>Ingresa el texto que deseas encriptar o desencriptar</span>
+                    </div>
+                </div>
+                <input type="button" value="Copiar" class="copy" onclick="btnCopy()">     
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    const btnCopiar = document.querySelector(".copy");
+    const placeholderImage = document.querySelector(".placeholder-image");
+    const placeholderText = document.querySelector(".placeholder-text");
+    var textoIn = document.querySelector(".input");
+    var mnsjSalida = document.querySelector(".output");  
+
+    function btnEncriptar(){
+        let bandera = carProhibidos(textoIn.value);
+        verificar();
+        if(bandera){
+            var mnsjEncriptado = encriptar(textoIn.value);
+            mnsjSalida.value = mnsjEncriptado;
+            cambiarColor();
+        }
+        placeHolder();
+        textoIn.value = "";
+
+    }
+
+    function btnDesencriptar(){
+        let bandera = carProhibidos(textoIn.value);
+        verificar();
+        if(bandera){
+            var mnsjDesencriptado = desencriptar(textoIn.value);
+            mnsjSalida.value = mnsjDesencriptado;
+            cambiarColor();
+        }
+        placeHolder();
+        textoIn.value = "";
+    }
+
+    function btnCopy(){
+        navigator.clipboard.writeText(mnsjSalida.value);
+    }
+
+    function carProhibidos(mensaje){
+        const caracteres = ["/","[","!","@","#","$","%","^","&","*","(",")","_","+","-","=","[","]","{","}",";","'",":","|",".","<",">","á","é","í","ó","ú","Á","É","Í","Ó","Ú"];
+
+        for(i = 0; i < caracteres.length; i++){
+            if(mensaje.includes(caracteres[i])){
+                var cambioI = document.getElementById("errorIcono");
+                var cambioT = document.getElementById("errorTexto");
+                cambioT.classList.add("advertencia");
+                cambioT.classList.remove("reverse");
+                cambioI.style.color = "#ec0000";
+                cambioI.classList.remove("reverse");
+                
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
+
+    function encriptar(mensajeE){
+        let codigoE = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o","ober"], ["u","ufat"]];
+        mensajeE = mensajeE.toLowerCase();
+
+        for(i = 0; i < codigoE.length; i++){
+            if(mensajeE.includes(codigoE[i][0])){
+                mensajeE = mensajeE.replaceAll(codigoE[i][0], codigoE[i][1]);
+            }
+        }
+        return mensajeE;
+    }
+
+    function desencriptar(mensajeD){
+        let codigoD = [["e", "enter"], ["i", "imes"], ["a", "ai"], ["o","ober"], ["u","ufat"]];
+        mensajeD = mensajeD.toLowerCase();
+
+        for(i = 0; i < codigoD.length; i++){
+            if(mensajeD.includes(codigoD[i][0])){
+                mensajeD = mensajeD.replaceAll(codigoD[i][1], codigoD[i][0]);
+            }
+        }
+        return mensajeD;
+    }
+
+    function cambiarColor(){
+        var cambioI = document.getElementById("errorIcono");
+        var cambioT = document.getElementById("errorTexto");
+        cambioT.classList.remove("advertencia");
+        cambioT.classList.add("reverse");
+        cambioI.style.color = "#495057";
+        cambioI.classList.add("reverse");
+    }
+
+    function verificar(){
+        if (textoIn.value.trim() === '') {
+            placeholderText.style.display = "block"
+            placeholderImage.style.display = "block";
+            btnCopiar.style.visibility = "hidden";
+            return;
+        }     
+    }
+    function placeHolder(){
+        if (mnsjSalida.value.trim() !== "") {
+            placeholderText.style.display = "none"
+            placeholderImage.style.display = "none";
+            btnCopiar.style.visibility = "visible";
+        }
+    }
+</script> 
