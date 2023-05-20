@@ -20,7 +20,7 @@
                 <h1><img src="imagenes/Logo.png" alt="Logo de alura"></h1>
             </div>
             <div class="entrada">
-                <textarea cols="60" rows="14" class="input" placeholder="Ingrese su texto..."></textarea>
+                <textarea class="input" placeholder="Ingrese su texto..."></textarea>
                 <p class="verificacion"> 
                     <i id="errorIcono"class="material-icons">error</i>
                     <span id="errorTexto"> Solo letras minúsculas y sin acentos</span>
@@ -32,7 +32,7 @@
             </div>
             <div class="salida">
                 <div class="textarea-container">
-                    <textarea cols="40" readonly rows="25" class="output" placeholder=""></textarea>
+                    <textarea  readonly  class="output" placeholder=""></textarea>
                     <div class="placeholder-image"></div>
                     <div class="placeholder-text">
                         <span class="line-1">Ningún mensaje fue encontrado</span>
@@ -62,6 +62,7 @@
         }
         placeHolder();
         textoIn.value = "";
+        
 
     }
 
@@ -75,6 +76,7 @@
         }
         placeHolder();
         textoIn.value = "";
+        textoIn.focus();
     }
 
     function btnCopy(){
@@ -92,7 +94,6 @@
                 cambioT.classList.remove("reverse");
                 cambioI.style.color = "#ec0000";
                 cambioI.classList.remove("reverse");
-                
                 return false;
                 break;
             }
@@ -134,18 +135,30 @@
     }
 
     function verificar(){
+        var anchoPantalla = window.innerWidth;
+
         if (textoIn.value.trim() === '') {
-            placeholderText.style.display = "block"
-            placeholderImage.style.display = "block";
-            btnCopiar.style.visibility = "hidden";
-            return;
+            if (anchoPantalla <= 768){
+                btnCopiar.style.visibility = "hidden";
+                placeholderText.style.display = "block"
+                mnsjSalida.style.display = "none"
+                return;
+            } else{
+                btnCopiar.style.visibility = "hidden";
+                placeholderText.style.display = "block"
+                placeholderImage.style.display = "block";
+                
+                return;
+            }
         }     
     }
     function placeHolder(){
         if (mnsjSalida.value.trim() !== "") {
+            
             placeholderText.style.display = "none"
             placeholderImage.style.display = "none";
             btnCopiar.style.visibility = "visible";
+            mnsjSalida.style.display = "block"
         }
     }
 </script> 
